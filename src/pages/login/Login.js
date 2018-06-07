@@ -22,7 +22,9 @@ class Login extends Component {
         super(props);
         this.state = {
             modalVisible: false,
-            modalTitle: '正在加载，请稍候...'
+            modalTitle: '正在加载，请稍候...',
+            username: 'admin',
+            password: 'admin'
         };
         this.login = this.login.bind(this);
         this.onChangeUsername = this.onChangeUsername.bind(this);

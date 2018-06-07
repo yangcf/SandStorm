@@ -7,11 +7,13 @@ import {
     createStackNavigator,
     createMaterialTopTabNavigator
 } from 'react-navigation'
+import { StyleSheet } from 'react-native';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 import Login from '../pages/login/Login'
 import FirstPage from '../pages/text/text'
 import SecondPage from '../pages/text/text1'
 
-const Tab = createMaterialTopTabNavigator(
+const Tab = createMaterialBottomTabNavigator(
     {
         FirstPage:{
             screen: FirstPage,
@@ -19,23 +21,24 @@ const Tab = createMaterialTopTabNavigator(
         SecondPage:{
             screen: SecondPage,
         },
+        thirthPage:{
+            screen: SecondPage,
+        },
+        fourthPage:{
+            screen: SecondPage,
+        },
     },
     {
-        initialRouteName: 'FirstPage',
-        activeTintColor: '#f0edf6',
-        inactiveTintColor: '#3e2465',
-        tabBarOptions: {
-            labelStyle: {
-              fontSize: 12,
-            },
-            tabStyle: {
-            },
-            style: {
-            //   backgroundColor: 'blue',
-            },
-          },
-        barStyle: { backgroundColor: '#694fad' },
-    }
+        shifting: false,
+        activeTintColor: 'red',
+        inactiveTintColor: '#828792',
+        barStyle: {
+          backgroundColor: '#44dddd',
+          borderTopWidth: StyleSheet.hairlineWidth,
+          borderStyle: 'solid',
+          borderColor: '#d0cfd0',
+        },
+      }
 );
 
 const RouteConfigs = {
