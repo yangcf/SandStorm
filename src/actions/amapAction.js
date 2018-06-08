@@ -37,12 +37,3 @@ const locationContain = () => {
         type: types.LOCATION_CONTAIN
     }
 }
-
-
-
-//登出
-export function logout(){
-    return {
-      type:types.LOGOUT
-    };
-  }
