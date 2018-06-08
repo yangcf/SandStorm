@@ -6,7 +6,7 @@ import { Alert } from 'react-native'
 //登陆
 export function  login(user){
     return dispatch => {
-        dispatch(loginIng);
+        dispatch(loginIng());
         NetUtil.postJson(dataApi.login,null,(ret) => {
             //模拟登陆
             if(user.username == 'admin' && user.password == 'admin'){

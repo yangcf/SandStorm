@@ -4256,6 +4256,10 @@ react-lifecycles-compat@^3, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "http://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
+react-native-amap3d@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/react-native-amap3d/download/react-native-amap3d-1.0.0.tgz#9aed0a2a23d9d5f9e5154dd889383c028da9ad07"
+
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/react-native-dismiss-keyboard/download/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"

@@ -12,20 +12,19 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import Login from '../pages/login/Login'
 import FirstPage from '../pages/text/text'
 import SecondPage from '../pages/text/text1'
+import Home from '../pages/home/Home'
+import Amap from '../containers/Amap'
 
 const Tab = createMaterialBottomTabNavigator(
     {
-        FirstPage:{
-            screen: FirstPage,
-        },
-        SecondPage:{
-            screen: SecondPage,
+        Home:{
+            screen: Home,
         },
         thirthPage:{
-            screen: SecondPage,
+            screen: FirstPage,
         },
         fourthPage:{
-            screen: SecondPage,
+            screen: FirstPage,
         },
     },
     {
@@ -46,6 +45,9 @@ const RouteConfigs = {
         screen: Login,
     },
     Tab: Tab,
+    Amap: {
+        screen: Amap,
+    },
 };
 
 export const StackNavigatorConfig = {
