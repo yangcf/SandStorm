@@ -13,36 +13,27 @@ import {
   Vibration,
   Alert
 } from 'react-native';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as actionCreators from '../actions/amapAction'
 import { MapView } from 'react-native-amap3d'
 import ComHeader from '../components/ComHeader'
 
-const EARTH_RADIUS = 6378137.0;    //单位M
-const PI = Math.PI;
-export default class Amap extends Component {
+class Amap extends Component {
     constructor(props){
         super(props);
+        console.log(props);
         this.state = {
-            location:{
-                latitude: 39.955384086445804,
-                longitude: 116.33783608675003,
-            },
             mapType: 'standard',
-            localState: false,
-            initCoordinate: {
-                latitude: 39.955384086445804,
-                longitude: 116.33783608675003,
-            },
-            vibrate: false
+            coordinate: this.props.coordinate
         }
         
     }
 
   _renderLeft(){
     return (
-        <Button title={this.state.localState?'正在监控,点击关闭':'开启监控'} onPress={()=>{
-                this.setState({
-                    localState: !this.state.localState
-                });
+        <Button title={this.props.localState?'停止监控':'开启监控'} onPress={()=>{
+            this.props.actions.location(this.props.localState);
         }} />
     )
   }
@@ -77,28 +68,13 @@ _renderRight(){
 
   _onLocation(evt){
     console.log(`${evt.latitude},${evt.longitude},${evt.timestamp},${evt.speed},${evt.accuracy}`);
-    this.etGreatCircleDistance(evt.latitude,evt.longitude,this.state.location.latitude,this.state.location.longitude,(s)=>{
-        // if(!!!s){
-            if(s>=150){
-                if(!this.state.vibrate){
-                    Alert.alert("你已经快要脱离打卡范围，请记得打卡！");
-                    this.state.vibrate = true;
-                    Vibration.vibrate([0, 500, 1000, 500],false);
-                }
-                
-            }
-        // }else{
-            // Alert.alert("请拖动标记至公司地址！");
-        // }
-    });
-    
+    this.props.actions.onLocation({lat1:evt.latitude,lng1:evt.longitude,lat2:this.props.coordinate.latitude,lng2:this.props.coordinate.longitude},this.props.alert);
   }
 
   _MarkerOnDragEnd(evt){
-      this.state.location.latitude = evt.latitude;
-      this.state.location.longitude = evt.longitude;
-      Alert.alert("已经更新公司地点！");
-      console.log(`${evt.latitude}, ${evt.longitude}`)
+    this.props.actions.markerOnDragEnd(evt);
+    Alert.alert("已经更新公司地点！");
+    console.log(`${evt.latitude}, ${evt.longitude}`)
   }
 
   render() {
@@ -109,7 +85,7 @@ _renderRight(){
          </View>   
          <View style = {{flex:1}}>
             <MapView
-                locationEnabled = {this.state.localState}
+                locationEnabled = {this.props.localState}
                 distanceFilter={100}
                 onLocation={({ nativeEvent }) =>this._onLocation(nativeEvent)}
                 showsLocationButton
@@ -132,7 +108,7 @@ _renderRight(){
                     title='将我拖拽到公司地址~'
                     description = '请长按~'
                     onDragEnd={({ nativeEvent }) =>this._MarkerOnDragEnd(nativeEvent)}
-                    coordinate={this.props.initCoordinate?this.props.initCoordinate:this.state.initCoordinate}
+                    coordinate={this.props.coordinate}
                 />
             </MapView>
             </View>
@@ -185,3 +161,12 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
+export default connect(state=>({
+    localState: state.amapReducer.localState,//定位状态
+    location: state.amapReducer.location,//当前定位坐标
+    alert: state.amapReducer.alert,//提醒标识
+    coordinate: state.amapReducer.coordinate//标记坐标
+}),(dispatch)=>({
+actions: bindActionCreators(actionCreators, dispatch)
+}))(Amap);

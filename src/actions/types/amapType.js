@@ -11,3 +11,5 @@ export const LOCATION_CLOCK_IN = 'LOCATION_CLOCK_IN';//即将脱离打卡范围�
 export const LOCATION_START = 'LOCATION_START';//开启监控
 
 export const LOCATION_CLOSE = 'LOCATION_CLOSE';//关闭监控
+
+export const LOCATION_UPDATE = 'LOCATION_UPDATE';//更新当前实时坐标
