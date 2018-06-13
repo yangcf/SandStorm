@@ -42,7 +42,7 @@ export default class commonHead extends Component{
         let renderRightItem = this.renderRightItem();
         let renderTitleItem = this.renderTitleItem();
         return (
-                <View style={[styles.navBarStyle]}>
+                <View style={[styles.navBarStyle,{backgroundColor:'#47B6E8'}]}>
                     <View>
                         {renderLeftItem}
                     </View>

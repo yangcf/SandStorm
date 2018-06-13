@@ -14,6 +14,8 @@ import FirstPage from '../pages/text/text'
 import SecondPage from '../pages/text/text1'
 import Home from '../pages/home/Home'
 import Amap from '../containers/Amap'
+import Account from '../containers/Account'
+
 
 const Tab = createMaterialBottomTabNavigator(
     {
@@ -48,6 +50,9 @@ const RouteConfigs = {
     Amap: {
         screen: Amap,
     },
+    Account: {
+        screen: Account
+    }
 };
 
 export const StackNavigatorConfig = {

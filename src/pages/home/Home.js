@@ -28,6 +28,9 @@ class Home extends Component {
                 <Button title={'打卡提醒'} onPress={()=>{
                     this.props.navigation.navigate('Amap');
                 }}/>
+                <Button title={'小账本'} onPress={()=>{
+                    this.props.navigation.navigate('Account');
+                }}/>
             </View>
         )
     }
